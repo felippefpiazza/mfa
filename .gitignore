@@ -15,4 +15,5 @@
 /vendor/bundle
 db/schema.rb
 /config/database.yml
+/config/secrets.yml
 .DS_Store
