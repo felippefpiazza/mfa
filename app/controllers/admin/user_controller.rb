@@ -3,8 +3,6 @@ class Admin::UserController < Admin::ApplicationController
 
   def qr
     totp = ROTP::TOTP.new(current_client.token.first.token_key)
-    #binding.pry
-    #@qr = RQRCode::QRCode.new("QR DE TESTE").to_img.resize(200, 200).to_data_url
     @qr = RQRCode::QRCode.new(totp.provisioning_uri("MFA"), :size => 10).to_img.resize(200, 200).to_data_url
   end
   def index
@@ -39,11 +37,9 @@ class Admin::UserController < Admin::ApplicationController
       mfa_type = @mfa_type.downcase
       auth_r = "Auth".concat(mfa_type.capitalize).constantize.new
       if (a = auth_r.auth(current_client.username,params[:token])) != nil
-              binding.pry
         session[:token_id] = a.id
         redirect_to admin_path(alert: "You are In!")
       else
-              binding.pry
         @alert = "Bad Token"
       end
     end
