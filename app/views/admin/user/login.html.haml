@@ -1,0 +1,16 @@
+-if @alert != nil
+	=@alert
+
+=form_tag("login", method: "post") do
+	%select{name: "mfa_type"}
+		%option{value: "sms"}
+			SMS Token
+		%option{value: "token"}
+			Hard Token
+	%br
+	%input{ :type => "text", "name" => "username", :placeholder => "Enter the username"}
+	%br
+	%input{ :type => "password", "name" => "password", :placeholder => "Enter the password"}						
+	%br
+	%input{:class => "btn-primary", :type => "submit", :value => "Login"}
+	%br

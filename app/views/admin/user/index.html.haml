@@ -1,0 +1,35 @@
+-if @alert != nil
+	=@alert
+-if current_client != nil
+	=current_client.name
+%br
+=link_to("Generate QR Code", admin_qr_path)
+
+%div{"ng-app" => "Mfa"}
+	%div{"ng-controller" => "MfaController"}
+		%div
+			%form{"ng-submit" => "login()"}
+				%select{ "ng-model" => "MfaType" }
+					%option{value: "sms"}
+						SMS Token
+					%option{value: "token"}
+						Hard Token
+				%br
+				%input{ :type => "text", "ng-model" => "Username", :placeholder => "Enter the username"}
+				%br
+				%input{ :type => "password", "ng-model" => "Password", :placeholder => "Enter the password"}						
+				%br
+				%input{:class => "btn-primary", :type => "submit", :value => "Login"}
+				%br
+			%ul{"ng-repeat" => "(key,value) in auth"} 
+				%li
+					{{key}} : {{value}}
+		%div
+			%form{"ng-submit" => "login_token()"}
+				%input{ :type => "text", "ng-model" => "Token", :placeholder => "Enter the token"}
+				%br
+				%input{:class => "btn-primary", :type => "submit", :value => "Send Token"}
+				%br
+			%ul{"ng-repeat" => "(key_t,value_t) in auth_token"} 
+				%li
+					{{key_t}} : {{value_t}}					

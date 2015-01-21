@@ -1,0 +1,7 @@
+-if @alert != nil
+	=@alert
+
+=form_tag("login_token", method: "post") do
+	%input{ :type => "text", "name" => "token", :placeholder => "Enter the Token"}
+	%input{ :type => "hidden", "name" => "mfa_type", :value => "#{@mfa_type}" }	
+	%input{:class => "btn-primary", :type => "submit", :value => "Login"}

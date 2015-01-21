@@ -1,0 +1,1 @@
+SMS_PARAMS = YAML.load(File.read(File.expand_path(Rails.root + 'config/settings.yml', __FILE__)))[Rails.env].with_indifferent_access   

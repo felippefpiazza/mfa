@@ -1,0 +1,24 @@
+# encoding: utf-8
+defaults: &defaults
+  sender_to_use:   "zenvia"
+  
+  mob21_username: "felippeorg"
+  mob21_pass: "qlu81c2u"
+  mob21_url:  "http://app.21sms.com.br/api/rest/send/format/json"
+  mob21_from:  "MFA Mob21"
+  
+  zenvia_username: "felippepiazza.api"
+  zenvia_pass:  "d51RgLzb7j"
+  zenvia_url:   "http://www.zenvia360.com.br/GatewayIntegration/msgSms.do"
+  zenvia_dispatch:  "send"
+  zenvia_from:  "MFA Zenvia"  
+    
+development:
+  <<: *defaults
+
+  
+test:
+  <<: *defaults
+  
+production:
+  <<: *defaults      
