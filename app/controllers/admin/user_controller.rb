@@ -39,9 +39,11 @@ class Admin::UserController < Admin::ApplicationController
       mfa_type = @mfa_type.downcase
       auth_r = "Auth".concat(mfa_type.capitalize).constantize.new
       if (a = auth_r.auth(current_client.username,params[:token])) != nil
+              binding.pry
         session[:token_id] = a.id
         redirect_to admin_path(alert: "You are In!")
       else
+              binding.pry
         @alert = "Bad Token"
       end
     end

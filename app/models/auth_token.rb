@@ -5,7 +5,7 @@ class AuthToken < Auth
       c.first.token.each do |t|
         totp = ROTP::TOTP.new(t.token_key)
         if totp.verify(token)
-          self.token = t
+          self.token_id = t.id
           self.client = c.first
           self.access_token = totp.now
           self.expired = true
