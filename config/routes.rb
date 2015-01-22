@@ -21,6 +21,17 @@ Rails.application.routes.draw do
     post '/login_token' => 'user#login_token'
     get '/qr' => 'user#qr'    
     
+
+    get 'client/' => 'client#index'
+    post 'client/' => 'client#index'    
+    get 'client/index' => 'client#index'
+    post 'client/index' => 'client#index'
+    get 'client/new' => 'client#new'
+    post 'client/save' => 'client#save'
+    get 'client/delete' => 'client#destroy'
+    get 'client/:id' => 'client#show'
+
+    
   end
   
   #resource :user, :default => {:format => 'xml'}

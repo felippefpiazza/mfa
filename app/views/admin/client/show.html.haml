@@ -1,0 +1,31 @@
+= form_for @resource, :as => 'form', url: admin_client_save_path , method: 'post' do |f|
+	- if @resource != nil and @resource.id != nil
+		= f.hidden_field :id, value: @resource.id
+		
+	%h3 Client
+	%table{width: "80%"}
+		%tr
+			%td{width: "50%"}
+				.field    
+					= f.label :username, 'Username'    
+					= f.text_field :username, value: @resource.username
+				.field    
+					= f.label :name, 'Name'    
+					= f.text_field :name, value: @resource.name	
+				.field    
+					= f.label :email, 'E-Mail'    
+					= f.text_field :email, value: @resource.email												
+				.field    
+					= f.label :phone2sms, 'Phone'    
+					= f.text_field :phone2sms, value: @resource.phone2sms
+				.field    
+					= f.label :password, 'Password'    
+					= f.password_field :password			
+				%td
+			%tr
+				%td
+					= image_tag @qr
+					= f.hidden_field :token, value: @client_token
+
+	.actions    
+		= submit_tag "Save", class: 'button button-big blue'

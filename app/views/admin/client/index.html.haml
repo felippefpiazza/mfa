@@ -1,0 +1,38 @@
+
+= link_to "Criar Novo",  admin_client_new_path
+= form_tag admin_client_index_path, name: "Busca" , id: "Busca" , method: 'post' do
+	.field
+		%table{width: "60%"}
+			%tr
+				%td{width: "70%"}
+					= text_field_tag  "busca", params[:busca], class: 'big'
+				%td{width: "30%"}
+					= submit_tag "Buscar", class: 'button button-big blue'
+	.report_table
+		- if @resources != nil and @resources.length > 0
+			%table.borders{width: "80%"}
+				%thead
+					%tr
+						%th
+							User
+						%th
+							Name
+						%th
+							E-mail
+						%th
+							Phone
+						%th
+							Edit
+
+				- @resources.each do |r|
+					%tr
+						%td
+							= r.username
+						%td
+							= r.name
+						%td
+							= r.email
+						%td
+							= r.phone2sms
+						%td
+							= link_to "Editar" , '/admin/client/' + r.id.to_s
