@@ -4,7 +4,14 @@ class AuthSms < Auth
   
   def generate_access_token
     self.access_token = rand.to_s[2..7]
-    case SMS_PARAMS[:sender_to_use]
+    
+    if self.client.phone2sms[0..1] == 55
+      use = "zenvia"
+    else
+      use = SMS_PARAMS[:sender_to_use]
+    end
+    
+    case use
     when "mob21"
       send_mob21
     when "zenvia"
@@ -57,8 +64,6 @@ class AuthSms < Auth
     
     res = Net::HTTP.get_response(uri)                  
     self.save
-    
-    binding.pry
   end
   
 end
