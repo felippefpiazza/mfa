@@ -9,6 +9,8 @@ class AuthSms < Auth
       send_mob21
     when "zenvia"
       send_zenvia
+    when "smsglobal"
+      send_smsglobal      
     end
   end
   
@@ -34,11 +36,29 @@ class AuthSms < Auth
                     'code' => SMS_PARAMS[:zenvia_pass],
                     'dispatch' => SMS_PARAMS[:zenvia_dispatch],
                     'from' => SMS_PARAMS[:zenvia_from],
-                    'to' => '55' + self.client.phone2sms,
+                    'to' => self.client.phone2sms,
                     'msg' => 'MFA Code: ' + self.access_token,
                     'id' => self.id
                      )                     
     self.save    
+  end
+  
+  def send_smsglobal
+    uri = URI(SMS_PARAMS[:smsglobal_url])
+    params = {
+                    'action' => SMS_PARAMS[:smsglobal_action],
+                    'user' => SMS_PARAMS[:smsglobal_user],
+                    'password' => SMS_PARAMS[:smsglobal_pass],
+                    'from' => SMS_PARAMS[:smsglobal_from],
+                    'to' => self.client.phone2sms,
+                    'text' => 'MFA Code: ' + self.access_token
+                   }
+    uri.query = URI.encode_www_form(params)
+    
+    res = Net::HTTP.get_response(uri)                  
+    self.save
+    
+    binding.pry
   end
   
 end

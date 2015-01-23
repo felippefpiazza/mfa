@@ -1,6 +1,6 @@
 # encoding: utf-8
 defaults: &defaults
-  sender_to_use:   "zenvia"
+  sender_to_use:   "smsglobal"
   
   mob21_username: "felippeorg"
   mob21_pass: "qlu81c2u"
@@ -12,6 +12,12 @@ defaults: &defaults
   zenvia_url:   "http://www.zenvia360.com.br/GatewayIntegration/msgSms.do"
   zenvia_dispatch:  "send"
   zenvia_from:  "MFA Zenvia"  
+  
+  smsglobal_action: "sendsms"
+  smsglobal_user: "x9ra43im"
+  smsglobal_pass: "HGXCfGcB"
+  smsglobal_from: "12129080700"
+  smsglobal_url: "http://www.smsglobal.com/http-api.php"
     
 development:
   <<: *defaults
